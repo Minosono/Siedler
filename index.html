@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siedler Live Cockpit</title>
+    <style>
+        body { font-family: sans-serif; padding: 15px; }
+        .hidden { display: none; }
+        #gruppen-liste ul { list-style: none; padding: 0; }
+        #gruppen-liste li { border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+        #gruppen-liste button { margin-left: 5px; cursor: pointer; }
+        .loading { font-style: italic; color: grey; }
+        .error { color: red; font-weight: bold; }
+        #auth-container button, #area-selection button { padding: 10px; font-size: 1em; margin: 5px; }
+        #resource-totals span { display: block; margin-bottom: 5px; font-weight: bold; }
+        .group-details span { margin-right: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>Siedler Live Cockpit</h1>
+
+    <!-- Bereich für Authentifizierung -->
+    <div id="auth-container">
+        <p>Bitte melde dich mit deinem Google-Konto an, um auf die Spieldaten zuzugreifen.</p>
+        <button id="authorize_button">Anmelden</button>
+        <button id="signout_button" class="hidden">Abmelden</button>
+        <p id="auth-status" class="loading">Autorisierung wird geprüft...</p>
+    </div>
+
+    <!-- Bereich für Gebietsauswahl -->
+    <div id="area-selection" class="hidden">
+        <h2>Wähle dein Gebiet</h2>
+        <p>Du bist noch keinem Gebiet zugewiesen. Wähle eines aus:</p>
+        <div id="area-buttons">
+            <!-- Buttons werden dynamisch hinzugefügt -->
+        </div>
+        <p id="area-selection-status" class="loading hidden"></p>
+    </div>
+
+    <!-- Haupt-App-Bereich -->
+    <div id="main-app" class="hidden">
+        <h2 id="area-title">Dein Gebiet: <span class="loading">Lade...</span></h2>
+        <p>Angemeldet als: <span id="user-email"></span></p>
+
+        <h3>Rohstoffproduktion in deinem Gebiet</h3>
+        <div id="resource-totals">
+            <span class="loading">Berechne Rohstoffe...</span>
+        </div>
+        <hr>
+
+        <h3>Gruppenübersicht in deinem Gebiet</h3>
+        <div id="gruppen-liste">
+            <p class="loading">Lade Gruppen...</p>
+            <ul>
+                <!-- Gruppen werden dynamisch hier eingefügt -->
+            </ul>
+        </div>
+         <button id="refresh-button">Daten neu laden</button>
+         <p id="last-updated" style="font-size: 0.8em; color: grey;"></p>
+         <p id="app-status" class="loading hidden"></p>
+         <p id="error-message" class="error hidden"></p>
+    </div>
+
+    <!-- Google API Skripte -->
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
+    <!-- Eigenes JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
