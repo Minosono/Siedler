@@ -1,0 +1,295 @@
+/* style.css */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #f39c12;
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+    --light-gray: #ecf0f1;
+    --medium-gray: #bdc3c7;
+    --dark-gray: #7f8c8d;
+    --text-color: #34495e;
+    --bg-color: #ffffff;
+    --border-radius: 5px;
+    --spacing-unit: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: var(--spacing-unit);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align top */
+    min-height: 100vh;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 600px; /* Max width for larger screens */
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures content stays within rounded corners */
+    padding: calc(var(--spacing-unit) * 2);
+}
+
+/* Screen Management */
+.screen {
+    display: none; /* Hide all screens by default */
+    padding: var(--spacing-unit);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: block; /* Show the active screen */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Loading Spinner */
+#loading-screen {
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 4);
+}
+
+.spinner {
+    border: 4px solid var(--light-gray);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-unit);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Buttons */
+button {
+    display: inline-block;
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+    margin: calc(var(--spacing-unit) * 0.5);
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker primary */
+}
+
+button:active {
+     transform: scale(0.98);
+}
+
+button:disabled {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+}
+
+.setup-button {
+    width: 100%; /* Make setup buttons fill grid cell */
+}
+
+.market-button {
+    background-color: var(--secondary-color);
+}
+.market-button:hover {
+    background-color: #27ae60; /* Darker secondary */
+}
+
+.logout-button {
+    background-color: var(--error-color);
+    font-size: 0.8rem;
+    padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+    float: right; /* Position logout buttons */
+}
+.logout-button:hover {
+    background-color: #c0392b; /* Darker error */
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-unit);
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.2rem; color: var(--secondary-color); margin-top: var(--spacing-unit); }
+
+header {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    padding-bottom: var(--spacing-unit);
+    border-bottom: 1px solid var(--light-gray);
+    overflow: hidden; /* Clear float */
+}
+
+header h1 {
+    float: left;
+    margin-bottom: 0;
+}
+
+/* QR Reader */
+#qr-reader-container {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+#qr-reader {
+    width: 100%;
+    max-width: 400px; /* Limit reader width */
+    margin: 0 auto var(--spacing-unit);
+    border: 1px solid var(--medium-gray);
+    /* Aspect ratio can be controlled via JS library options if needed */
+}
+
+#qr-status {
+    font-style: italic;
+    color: var(--dark-gray);
+}
+
+/* Team Info & Purchase Menu */
+#team-info, #purchase-menu, #market-info, .market-actions, .trade-section {
+    background-color: var(--light-gray);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+#team-resources ul, #team-items ul {
+    list-style: none;
+    padding-left: var(--spacing-unit);
+}
+#team-resources li, #team-items li {
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+#purchase-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+}
+
+.purchase-button {
+    background-color: var(--accent-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-unit);
+    min-width: 100px;
+}
+.purchase-button:hover {
+    background-color: #e67e22; /* Darker accent */
+}
+.purchase-button span {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Messages and Indicators */
+.message {
+    margin: var(--spacing-unit) 0;
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.error-message {
+    background-color: rgba(231, 76, 60, 0.1); /* Light error */
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: var(--spacing-unit);
+    margin-top: var(--spacing-unit);
+    border-radius: var(--border-radius);
+}
+
+.success-message {
+    background-color: rgba(39, 174, 96, 0.1); /* Light success */
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    padding: var(--spacing-unit);
+    margin-top: var(--spacing-unit);
+    border-radius: var(--border-radius);
+}
+
+.loading-indicator {
+    color: var(--primary-color);
+    font-style: italic;
+    text-align: center;
+    margin: var(--spacing-unit) 0;
+}
+
+/* Forms and Inputs (if added later) */
+input[type="text"], input[type="number"] {
+    padding: var(--spacing-unit);
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    width: 100%;
+    margin-bottom: var(--spacing-unit);
+}
+
+/* Market Specific */
+.market-info p, .market-actions p {
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+#trade-interface {
+    background-color: #fff; /* Slightly different bg for contrast */
+}
+
+/* Utility */
+hr {
+    border: none;
+    border-top: 1px solid var(--light-gray);
+    margin: calc(var(--spacing-unit) * 2) 0;
+}
+
+/* Responsive Adjustments (Example) */
+@media (max-width: 480px) {
+    body {
+        padding: calc(var(--spacing-unit) * 0.5);
+    }
+    #app-container {
+        padding: var(--spacing-unit);
+    }
+    h1 { font-size: 1.5rem; }
+    .button-grid {
+        grid-template-columns: 1fr; /* Stack buttons on very small screens */
+    }
+    button {
+        font-size: 0.9rem;
+    }
+     #qr-reader {
+        /* Adjust if needed, but html5-qrcode usually handles responsiveness */
+     }
+}

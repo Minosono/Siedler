@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siedler QR Stationen</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Web-Anwendung zur Verwaltung von Siedler QR Stationen bei einer Kinderfreizeit.">
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+</head>
+<body>
+    <div id="app-container">
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen active">
+            <div class="spinner"></div>
+            <p id="loading-message">Lade Anwendung...</p>
+        </div>
+
+        <!-- Setup Screen -->
+        <div id="setup-screen" class="screen">
+            <h1>Geräterolle auswählen</h1>
+            <p>Wähle aus, ob dieses Gerät eine Station oder der Marktplatz ist.</p>
+            <div id="station-buttons" class="button-grid">
+                <!-- Station buttons will be added here -->
+            </div>
+            <button id="market-button" class="setup-button market-button">Marktplatz</button>
+            <p id="setup-error" class="error-message" style="display: none;"></p>
+            <hr>
+             <button id="authorize_button" style="display: none;">Google Autorisierung</button>
+             <button id="signout_button" style="display: none;">Google Logout</button>
+        </div>
+
+        <!-- Station Screen -->
+        <div id="station-screen" class="screen">
+            <header>
+                <h1 id="station-name">Station</h1>
+                <button id="station-logout-button" class="logout-button">Logout</button>
+            </header>
+            <div id="qr-reader-container">
+                <div id="qr-reader"></div>
+                 <button id="scan-interrupt-button" style="display: none;">Scan unterbrechen</button>
+                 <button id="scan-resume-button" style="display: none;">Scan fortsetzen</button>
+                 <p id="qr-status">QR-Code wird gesucht...</p>
+            </div>
+
+            <div id="team-info" style="display: none;">
+                <h2 id="team-name">Teamname</h2>
+                <div id="team-resources">
+                    <p><strong>Ressourcen:</strong></p>
+                    <ul id="resource-list"></ul>
+                </div>
+                <div id="team-items">
+                    <p><strong>Besitz:</strong></p>
+                    <ul id="item-list"></ul>
+                </div>
+                 <p id="station-action-message" class="message"></p>
+            </div>
+
+            <div id="purchase-menu" style="display: none;">
+                <h3>Kaufmenü</h3>
+                <div id="purchase-options">
+                    <!-- Purchase buttons will be added here -->
+                </div>
+                 <p id="purchase-error" class="error-message" style="display: none;"></p>
+                 <p id="purchase-success" class="success-message" style="display: none;"></p>
+            </div>
+
+            <div id="station-controls">
+                 <button id="station-finish-button" style="display: none;">Fertig / Nächster Scan</button>
+            </div>
+             <p id="station-error" class="error-message" style="display: none;"></p>
+             <p id="station-loading" class="loading-indicator" style="display: none;">Verarbeite...</p>
+        </div>
+
+        <!-- Market Screen -->
+        <div id="market-screen" class="screen">
+             <header>
+                <h1>Marktplatz</h1>
+                 <button id="market-logout-button" class="logout-button">Logout</button>
+             </header>
+            <div class="market-info">
+                <p>Aktuelle Runde: <strong id="current-round">?</strong></p>
+                <p>Handelsverhältnis: <strong id="trade-ratio">?:?</strong></p>
+                 <button id="refresh-market-data">Marktdaten aktualisieren</button>
+            </div>
+            <div class="market-actions">
+                 <button id="next-round-button">Nächste Runde starten</button>
+                 <p id="market-message" class="message"></p>
+                 <p id="market-error" class="error-message" style="display: none;"></p>
+                 <p id="market-loading" class="loading-indicator" style="display: none;">Verarbeite...</p>
+            </div>
+             <hr>
+             <div class="trade-section">
+                 <h2>Team-Handel (Platzhalter)</h2>
+                 <button id="start-trade-button">Handel starten</button>
+                 <div id="trade-interface" style="display: none; border: 1px dashed #ccc; padding: 10px; margin-top: 10px;">
+                     <p><em>Hier könnte die Handelsoberfläche implementiert werden:</em></p>
+                     <ol>
+                         <li>Scan Team 1</li>
+                         <li>Scan Team 2</li>
+                         <li>Ressourcen auswählen (Angebot/Nachfrage)</li>
+                         <li>Prüfung & Bestätigung</li>
+                         <li>Daten in Google Sheets aktualisieren</li>
+                     </ol>
+                 </div>
+             </div>
+              <hr>
+              <button id="market_authorize_button" style="display: none;">Google Autorisierung</button>
+              <button id="market_signout_button" style="display: none;">Google Logout</button>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
+    <!-- App Logic -->
+    <script src="app_qr.js"></script>
+</body>
+</html>
