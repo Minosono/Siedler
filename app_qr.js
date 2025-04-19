@@ -2,9 +2,9 @@
 
 // --- CONFIGURATION ---
 // TODO: Ersetze diese Platzhalter durch deine tatsächlichen Werte
-const API_KEY = 'DEIN_API_SCHLÜSSEL'; // Dein Google API Key
-const CLIENT_ID = 'DEINE_CLIENT_ID.apps.googleusercontent.com'; // Deine Google OAuth 2.0 Client ID
-const SPREADSHEET_ID = 'DEINE_TABELLEN_ID'; // Die ID deines Google Spreadsheets
+const API_KEY = 'AIzaSyCInq40BsOQgYjhi0tmJmSv3Yscp792oFg'; // Dein Google API Key
+const CLIENT_ID = '406096243871-l94ssn225l3lhrofpput6o1okn1vbpd3.apps.googleusercontent.com'; // Deine Google OAuth 2.0 Client ID
+const SPREADSHEET_ID = '11RmZQpoAgh77w7yiyVQqFTjrSIWbzszLv0aXewmTBOA'; // Die ID deines Google Spreadsheets
 
 // Namen der Tabellenblätter (Sheets)
 const SHEET_NAMES = {
